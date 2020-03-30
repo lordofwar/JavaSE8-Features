@@ -121,18 +121,18 @@ public class WinnersStream {
         System.out.println("mapWinnerNameLengthToList " + mapWinnerNameLengthToList);
 
         //--------------------------------------------------------
-        // matching - allMatch, noneMatch
+        // matching - allMatch, noneMatch  任意返回一个值
         Optional<Winner> winner2012 = winners.stream().filter(w -> w.getName().contains("Wiggins")).findAny();
 
         // winner2012 - Bradley Wiggins
         System.out.println("winner2012 - " + winner2012.get());
 
-        //--------------------------------------------------------
+        //-------------------------------------------------------- 返回第一个值
         Optional<Integer> winnerYear2014 = winners.stream().map(Winner::getYear).filter(x -> x == 2014).findFirst();
         // winnerYear2014 - 2014
         System.out.println("winnerYear2014 - " + winnerYear2014.get());
 
-        //--------------------------------------------------------
+        //--------------------------------------------------------初始化0，之后的值累加  求和
         // reducing - 0 --> initial value
         int totalDistance = winners.stream().map(Winner::getLengthKm).reduce(0, Integer::sum);
         // totalDistance - 38767
@@ -148,15 +148,23 @@ public class WinnersStream {
         // longestYear - 3661
         System.out.println("longestYear - " + longestYear.get());
 
-        //--------------------------------------------------------
+        //-------------------------------------------------------- 平均速率最小的
         Optional<Winner> fastestWinner = winners.stream().min(Comparator.comparingDouble(Winner::getAveSpeed));
         System.out.println("fastestTDF - " + fastestWinner.get());
+
+//        平均速率最大的
+        Optional<Winner> fastestWinnerMax = winners.stream().max(Comparator.comparingDouble(Winner::getAveSpeed));
+        System.out.println("fastestTDFMax - " + fastestWinnerMax.get());
 
         //--------------------------------------------------------
         // shorthand
         OptionalDouble fastestTDF = winners.stream().mapToDouble(Winner::getAveSpeed).min();
         // fastestTDF - 39.0
         System.out.println("fastestTDF - " + fastestTDF.getAsDouble());
+//        平均速率最大的
+        OptionalDouble fastestTDFMax = winners.stream().mapToDouble(Winner::getAveSpeed).max();
+        // fastestTDF - 39.0
+        System.out.println("fastestTDF - " + fastestTDFMax.getAsDouble());
 
         //--------------------------------------------------------
         // groupingby - make a map whose keys are names

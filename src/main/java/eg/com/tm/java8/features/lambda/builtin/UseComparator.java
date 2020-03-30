@@ -17,46 +17,58 @@
 package eg.com.tm.java8.features.lambda.builtin;
 
 import static java.lang.System.out;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
+
 import static java.util.Collections.sort;
+
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
- *
  * @author mohamed_taman
  */
 public class UseComparator {
 
     public static void main(String[] args) {
 
-        List<String> values = Arrays.asList("AAA","bbb","CCC","ddd","EEE");
-                
-        //Case sensitive sort operation
-        sort(values);
+        List<String> values = Arrays.asList("AAA", "bbb", "CCC", "ddd", "EEE");
 
-        out.println("Simple sort:");
-        print(values);
+        List<String> eee = values.stream().filter(a -> a.equalsIgnoreCase("EEE")).collect(Collectors.toList());
+        print(eee);
+        List<String> ddd = values.stream().filter(a -> a.equalsIgnoreCase("ddd")).collect(Collectors.toList());
+        print(ddd);
 
-        // Case insensetive sort operation with anonymous class
-//        Collections.sort(values, new Comparator<String>() {
+
+
+
+//        //Case sensitive sort operation
+//        sort(values);
 //
-//            @Override
-//            public int compare(String o1, String o2) {
-//                return o1.compareToIgnoreCase(o2);
-//            }
-//        });
-                
-        // Case insensetive sort operation with Lambda
-        sort(values,(o1, o2) -> o1.compareToIgnoreCase(o2));
-
-        out.println("Sort with Comparator");
-        print(values);
+//        out.println("Simple sort:");
+//        print(values);
+//
+//        // Case insensetive sort operation with anonymous class
+////        Collections.sort(values, new Comparator<String>() {
+////
+////            @Override
+////            public int compare(String o1, String o2) {
+////                return o1.compareToIgnoreCase(o2);
+////            }
+////        });
+//
+//        // Case insensetive sort operation with Lambda
+//        sort(values, (o1, o2) -> o1.compareToIgnoreCase(o2));
+//
+//        out.println("Sort with Comparator");
+//        print(values);
     }
 
     /**
      * Function to print provided data.
+     *
      * @param data to be printed
      */
     private static void print(Collection<String> data) {

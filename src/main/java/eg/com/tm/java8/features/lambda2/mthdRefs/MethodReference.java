@@ -78,6 +78,7 @@ public class MethodReference {
 
         mr.doFilterAndPrintPath(mr::isExists);
 
+
         mr.doPrint();
 
     }
