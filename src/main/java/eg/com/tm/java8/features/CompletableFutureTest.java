@@ -44,7 +44,7 @@ public class CompletableFutureTest {
                     }
                 }).exceptionally(e -> {
                     System.out.println("ex" + e.getMessage()); //ex:java.lang.ArithmeticException: / by zero
-                    return "futureA result: 100";
+                    return "futureA result: 100。。。";
                 });
         //futureA result: 100
         System.out.println(futureA.join());
