@@ -26,7 +26,7 @@ public class CompletableFutureTest {
 //        CompletableFuture<String> futureC = futureB.thenApply(b -> {
 //            System.out.println("执行任务C.");
 //            System.out.println("参数:" + b);//参数:任务B
-//            return "a";
+//            return "a";sales-mover
 //        });
 
 

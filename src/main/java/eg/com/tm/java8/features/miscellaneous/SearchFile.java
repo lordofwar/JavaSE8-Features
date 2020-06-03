@@ -18,35 +18,43 @@ package eg.com.tm.java8.features.miscellaneous;
 
 import java.nio.file.Files;
 import java.nio.file.Path;
+
 import static java.nio.file.Paths.get;
+
 import java.util.Optional;
 import java.util.stream.Stream;
 
 /**
- *
  * @author mohamed_taman
  */
 public class SearchFile {
-    
+
     public static void main(String[] args) {
-		
-		Path path = get("src/main", "resources","files", "hamlet.txt");
-		
-                String searchTerm = "To be, or not to be";
-		
-		try (Stream<String> lines = Files.lines(path)) {
-			
-			Optional<String> line = lines.filter(l -> l.contains(searchTerm)).findFirst();
-			if (line.isPresent()) {
-				System.out.println("Found: " + line.get());
-			} else {
-				System.out.println("Not found");
-			}
-			
-		} catch (Exception e) {
-			System.out.println("There was an error: " + e.getMessage());
-		}
-		
-	}		
-    
+
+        Path path = get("src/main", "resources", "files", "hamlet.txt");
+
+        String searchTerm = "To be, or not to be";
+
+        try (Stream<String> lines = Files.lines(path)) {
+
+            Optional<String> line = lines.filter(l -> l.contains(searchTerm)).findFirst();
+
+            String a = "a";
+            //判断是否是空，空的话取其它的值 other
+            String primaryKey = Optional.ofNullable(a).orElse("id");
+
+
+            if (line.isPresent()) {
+                System.out.println("Found: " + line.get());
+            } else {
+                System.out.println("Not found");
+            }
+
+
+        } catch (Exception e) {
+            System.out.println("There was an error: " + e.getMessage());
+        }
+
+    }
+
 }
